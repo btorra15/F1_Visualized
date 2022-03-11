@@ -18,9 +18,6 @@ races = []
 
 race_links = []  # holds the link to each race
 
-
-
-
 filters = soup.find_all('ul', {'class': 'resultsarchive-filter ResultFilterScrollable'}) # grabs each list of filters (race, filters on drivers, year)
 
 races_html = filters[2]  # grabs the html of the races filter
