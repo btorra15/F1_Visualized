@@ -15,6 +15,8 @@ drivers_practice2 = []
 drivers_practice1 = []
 
 races = []
+race_results = {} # dictionary to hold race name and its standings
+race_results[2021] = {}
 
 race_links = []  # holds the link to each race
 
@@ -44,7 +46,7 @@ for i in range(1, len(race_links)):
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
 
-    # finds the table which contains data
+    # finds the table which contains data of the race
     results = soup.find('table', {'class': 'resultsarchive-table'})
 
     # finds list of drivers who drove in race
@@ -56,6 +58,8 @@ for i in range(1, len(race_links)):
         driver_lastname = driver.find('span', {'class': 'hide-for-mobile'})
 
         if(driver_firstname != None):
-            drivers_raceresult.append(driver_firstname.text + ' ' + driver_lastname.text)
+            driver_name = driver_firstname.text + ' ' + driver_lastname.text
+            drivers_raceresult.append(driver_name)
 
+    race_results[2021][races[i]] = drivers_raceresult
     drivers_raceresult = []
